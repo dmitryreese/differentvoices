@@ -45,12 +45,12 @@ class ActiveCurrenciesList extends Component {
         const { items, api } = this.props;
         return (
             <div>
-                <div>Отслеживаемые валюты:</div>
+                <div className={'list-header'}>Отслеживаемые валюты:</div>
                 <UpdateButton hasFinished={api.hasFinished} autoupdate={this.state.autoupdate} isItems={items.length < 1} />
                 <label>Обновлять автоматически
                     <input type="checkbox" checked={this.state.autoupdate} onChange={this.toggleAutoupdate}/>
                 </label>
-                <div>
+                <div className={'list-items'}>
                     {items.map((item, idx) => <ActiveCurrencyItem key={idx} item={item} />)}
                 </div>
             </div>

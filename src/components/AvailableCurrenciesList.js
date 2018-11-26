@@ -5,8 +5,8 @@ import AvailableCurrencyItem from '../containers/AvailableCurrencyItem';
 const AvailableCurrenciesList = ({ items }) => {
     return (
         <div>
-            <div>Доступные валюты:</div>
-            <div>
+            <div className={'list-header'}>Доступные валюты:</div>
+            <div className={'list-items available-currencies'}>
                 {items.map((item, idx) => <AvailableCurrencyItem key={idx} item={item} />)}
             </div>
         </div>
