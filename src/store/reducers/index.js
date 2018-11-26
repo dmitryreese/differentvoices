@@ -1,17 +1,6 @@
-import ACTIONS from '../actions/ACTIONS';
+import { combineReducers } from 'redux';
 
-const initialState = {
-    currencies: []
-}
+import api from './apiReducer';
+import currencies from './currenciesReducer';
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ACTIONS.ADD_CURRENCY:
-        case ACTIONS.DELETE_CURRENCY:
-        case ACTIONS.TRACK_STATUS:
-        default:
-            return state
-    }
-}
-
-export default rootReducer;
+export default combineReducers({ currencies, api });

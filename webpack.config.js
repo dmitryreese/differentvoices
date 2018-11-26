@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/index',
+    entry: ['@babel/polyfill', './src/index'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/build/',
@@ -16,10 +16,6 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
-            },
-            {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     }
