@@ -1,10 +1,9 @@
 import ACTIONS from '../actions/ACTIONS';
-import currencies from '../../constants/currencies';
 
 const makeActiveCurrency = (name, rate) => ({ name, rate: rate.toFixed(2) });
 
 const initialState = {
-    available: JSON.parse(localStorage.getItem('availableCurrencies')) || currencies,
+    available: JSON.parse(localStorage.getItem('availableCurrencies')) || [],
     active: JSON.parse(localStorage.getItem('activeCurrencies')) || []
 }
 
@@ -19,9 +18,18 @@ const currenciesReducer = (state = initialState, action) => {
     }
 
     switch (action.type) {
+        case (ACTIONS.FETCH_AVAILABLE):
+            available = Object.keys(payload.rates).map(name => ({ name }));
+
+            updateStorage(state.active, available);
+            
+            return { ...state, available }
+
         case ACTIONS.UPDATE_DATA:
             active = state.active.map(currency =>
                 makeActiveCurrency(currency.name, Math.random()));
+            
+            updateStorage(active, state.available);
 
             return { ...state, active };
 
