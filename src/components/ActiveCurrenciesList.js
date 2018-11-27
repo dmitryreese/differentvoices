@@ -14,7 +14,7 @@ class ActiveCurrenciesList extends Component {
     }
 
     componentDidMount() {
-        this.updateData();
+        if (this.props.items.length > 0) this.updateData();
         if (this.state.autoupdate) this.auto();
     }
 
